@@ -7,20 +7,56 @@ import (
 )
 
 func TestNextToken(t *testing.T) {
-	input := `=+(){},;`
+	input := `let five = 5;
+let ten = 10;
+
+let add = fn(x, y) {
+	x + y;
+}
+
+let result = add(five, ten);
+`
 
 	tests := []struct {
 		expectedType    token.TokenType
 		expectedLiteral string
 	}{
+		{token.LET, "let"},
+		{token.IDENT, "five"},
 		{token.ASSIGN, "="},
-		{token.PLUS, "+"},
+		{token.INT, "5"},
+		{token.SEMICOLON, ";"},
+		{token.LET, "let"},
+		{token.IDENT, "ten"},
+		{token.ASSIGN, "="},
+		{token.INT, "10"},
+		{token.SEMICOLON, ";"},
+		{token.LET, "let"},
+		{token.IDENT, "add"},
+		{token.ASSIGN, "="},
+		{token.FUNCTION, "fn"},
 		{token.LPAREN, "("},
+		{token.IDENT, "x"},
+		{token.COMMA, ","},
+		{token.IDENT, "y"},
 		{token.RPAREN, ")"},
 		{token.LBRACE, "{"},
-		{token.RBRACE, "}"},
-		{token.COMMA, ","},
+		{token.IDENT, "x"},
+		{token.PLUS, "+"},
+		{token.IDENT, "y"},
 		{token.SEMICOLON, ";"},
+		{token.RBRACE, "}"},
+		{token.LET, "let"},
+		{token.IDENT, "result"},
+		{token.ASSIGN, "="},
+		{token.IDENT, "add"},
+		{token.LPAREN, "("},
+		{token.IDENT, "five"},
+		{token.COMMA, ","},
+		{token.IDENT, "ten"},
+		{token.RPAREN, ")"},
+		{token.SEMICOLON, ";"},
+		{token.EOF, ""},
 	}
 
 	lexer := New(input)
@@ -37,4 +73,4 @@ func TestNextToken(t *testing.T) {
 	}
 }
 
-// Continue at page 15, after "Great! Let's now extend"
+// Continue at page 20, section "1.4 - Extending our Token Set and Lexer"
