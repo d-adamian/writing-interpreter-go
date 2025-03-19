@@ -120,5 +120,3 @@ if (5 < 10) {
 		}
 	}
 }
-
-// Continue at page 25, section "1.5 - Start of a REPL"
