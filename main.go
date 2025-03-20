@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 28, "2.1 - Parsers"
+// Continue at page 41, after "we can parse let statement!"
