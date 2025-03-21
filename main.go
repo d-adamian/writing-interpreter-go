@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 44, section "2.5 - Parsing Return Statements"
+// Continue at page 46, section "2.6 - Parsing Expressions"
