@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 46, section "2.6 - Parsing Expressions"
+// Continue at page 52, section "Implementing the Pratt Parser"
