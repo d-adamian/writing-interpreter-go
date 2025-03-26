@@ -80,9 +80,7 @@ return 993322;
 	program := p.ParseProgram()
 	checkParseErrors(t, p)
 
-	if len(program.Statements) != 3 {
-		t.Fatalf("program.Statements does not contain 3 statements, got=%d", len(program.Statements))
-	}
+	assertNumStatements(t, program, 3)
 
 	for _, stmt := range program.Statements {
 		returnStmt, ok := stmt.(*ast.ReturnStatement)
@@ -117,9 +115,7 @@ func TestIdentifierExpressions(t *testing.T) {
 	program := p.ParseProgram()
 	checkParseErrors(t, p)
 
-	if len(program.Statements) != 1 {
-		t.Fatalf("program has wrong number of statements, got=%d", len(program.Statements))
-	}
+	assertNumStatements(t, program, 1)
 
 	stmt, ok := program.Statements[0].(*ast.ExpressionStatement)
 	if !ok {
@@ -135,5 +131,38 @@ func TestIdentifierExpressions(t *testing.T) {
 	}
 	if ident.TokenLiteral() != "foobar" {
 		t.Errorf("ident.TokenLiteral not %s, got=%s", "foobar", ident.TokenLiteral())
+	}
+}
+
+func TestIntegerLiterals(t *testing.T) {
+	input := "5;"
+
+	l := lexer.New(input)
+	p := New(l)
+	program := p.ParseProgram()
+	checkParseErrors(t, p)
+
+	assertNumStatements(t, program, 1)
+
+	stmt, ok := program.Statements[0].(*ast.ExpressionStatement)
+	if !ok {
+		t.Fatalf("program.Statements[0] is not ast.ExpressionStatement, got=%T", program.Statements[0])
+	}
+
+	literal, ok := stmt.Expression.(*ast.IntegerLiteral)
+	if !ok {
+		t.Fatalf("exp not ast.IntegerLiteral, got=%T", stmt.Expression)
+	}
+	if literal.Value != 5 {
+		t.Errorf("literal.Value not %d, got=%d", 5, literal.Value)
+	}
+	if literal.TokenLiteral() != "5" {
+		t.Errorf("literal.TokenLiteral not %s, got=%s", "5", literal.TokenLiteral())
+	}
+}
+
+func assertNumStatements(t testing.TB, program *ast.Program, want int) {
+	if len(program.Statements) != want {
+		t.Fatalf("program has wrong number of statements, want=%d, got=%d", want, len(program.Statements))
 	}
 }
