@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 59, section "Prefix Operators"
+// Continue at page 63, section "Infix Operators"
