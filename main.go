@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 69, section "2.7 - How Pratt Parsing Works"
+// Continue at page 79, section "Boolean Literals"
