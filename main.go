@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 79, section "Boolean Literals"
+// Continue at page 82, section "Grouped Expressions"
