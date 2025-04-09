@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 89, section "Function Literals"
+// Continue at page 93, section "Call Expressions"
