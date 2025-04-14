@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 97, section "Removing TODOs"
+// Continue at page 100, section "2.9 - Read-Parse-Print-Loop"
