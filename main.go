@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 100, section "2.9 - Read-Parse-Print-Loop"
+// Continue at page 103, section "3.1 - Giving Meaning to Symbols"
