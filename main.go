@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 103, section "3.1 - Giving Meaning to Symbols"
+// Continue at page 110, section "3.5 - Evaluating Expressions"
