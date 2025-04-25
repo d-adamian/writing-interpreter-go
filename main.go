@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 110, section "3.5 - Evaluating Expressions"
+// Continue at page 116, section "Prefix Expressions"
