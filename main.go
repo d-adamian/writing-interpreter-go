@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 125, section "3.6 - Conditionals"
+// Continue at page 127, section "3.7 - Return Statements"
