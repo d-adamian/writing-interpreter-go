@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 127, section "3.7 - Return Statements"
+// Continue at page 131, section "3.8 - Abort! Abort! There’s been a mistake!, or: Error Handling"
