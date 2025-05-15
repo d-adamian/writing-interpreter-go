@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 131, section "3.8 - Abort! Abort! There’s been a mistake!, or: Error Handling"
+// Continue at page 136, section "3.9 - Bindings & The Environment"
