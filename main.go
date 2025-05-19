@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 136, section "3.9 - Bindings & The Environment"
+// Continue at page 140, section "3.10 - Functions & Function Calls"
