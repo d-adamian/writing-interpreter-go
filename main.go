@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 140, section "3.10 - Functions & Function Calls"
+// Continue at page 152, section "4.1 - Data Types & Functions"
