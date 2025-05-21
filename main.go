@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 160, section "4.3 - Built-in Functions"
+// Continue at page 164, section "4.4 - Array"
