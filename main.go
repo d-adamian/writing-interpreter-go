@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 169, section "Parsing Index Operator Expressions"
+// Continue at page 172, section "Evaluating Array Literals"
