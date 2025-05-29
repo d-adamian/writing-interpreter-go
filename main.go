@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 174, section "Evaluating Index Operator Expressions"
+// Continue at page 177, section "Adding Built-in Functions for Arrays"
