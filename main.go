@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 177, section "Adding Built-in Functions for Arrays"
+// Continue at page 181, section "4.5 - Hashes"
