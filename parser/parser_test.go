@@ -716,10 +716,7 @@ func TestParsingArrayExpression(t *testing.T) {
 func TestParsingIndexExpression(t *testing.T) {
 	input := "myArray[1 + 1]"
 
-	l := lexer.New(input)
-	p := New(l)
-	program := p.ParseProgram()
-	checkParseErrors(t, p)
+	program := parseProgram(t, input)
 
 	stmt, ok := program.Statements[0].(*ast.ExpressionStatement)
 	indexExp, ok := stmt.Expression.(*ast.IndexExpression)
@@ -734,4 +731,88 @@ func TestParsingIndexExpression(t *testing.T) {
 	if !testInfixExpression(t, indexExp.Index, 1, "+", 1) {
 		return
 	}
+}
+
+func TestParsingHashLiteralStringKeys(t *testing.T) {
+	input := `{"one": 1, "two": 2, "three": 3}`
+
+	program := parseProgram(t, input)
+
+	expected := map[string]int64{
+		"one":   1,
+		"two":   2,
+		"three": 3,
+	}
+
+	hash := assertHashLiteral(t, program, len(expected))
+
+	for key, value := range hash.Pairs {
+		literal, ok := key.(*ast.StringLiteral)
+		if !ok {
+			t.Errorf("key is not ast.StringLiteral. got=%T", key)
+		}
+
+		expectedValue := expected[literal.String()]
+		testIntegerLiteral(t, value, expectedValue)
+	}
+}
+
+func TestParsingEmptyHashLiteral(t *testing.T) {
+	progam := parseProgram(t, "{}")
+	assertHashLiteral(t, progam, 0)
+}
+
+func TestParsingHashLiteralsWithExpressions(t *testing.T) {
+	input := `{"one": 0 + 1, "two": 10 - 8, "three": 15 / 5}`
+	program := parseProgram(t, input)
+
+	tests := map[string]func(ast.Expression){
+		"one": func(e ast.Expression) {
+			testInfixExpression(t, e, 0, "+", 1)
+		},
+		"two": func(e ast.Expression) {
+			testInfixExpression(t, e, 10, "-", 8)
+		},
+		"three": func(e ast.Expression) {
+			testInfixExpression(t, e, 15, "/", 5)
+		},
+	}
+
+	hash := assertHashLiteral(t, program, len(tests))
+
+	for key, value := range hash.Pairs {
+		literal, ok := key.(*ast.StringLiteral)
+		if !ok {
+			t.Errorf("key is not ast.StringLiteral. got=%T", key)
+			continue
+		}
+		testFunc, ok := tests[literal.String()]
+		if !ok {
+			t.Errorf("No test function for key %q found", literal.String())
+		}
+
+		testFunc(value)
+	}
+
+}
+
+func parseProgram(t *testing.T, input string) *ast.Program {
+	l := lexer.New(input)
+	p := New(l)
+	program := p.ParseProgram()
+	checkParseErrors(t, p)
+	return program
+}
+
+func assertHashLiteral(t *testing.T, program *ast.Program, expectedSize int) *ast.HashLiteral {
+	stmt := assertExpression(t, program)
+	hash, ok := stmt.Expression.(*ast.HashLiteral)
+	if !ok {
+		t.Fatalf("exp is not ast.HashLiteral, got=%T", stmt.Expression)
+	}
+
+	if len(hash.Pairs) != expectedSize {
+		t.Errorf("hash.Pairs has wrong length, want=%d, got=%d", expectedSize, len(hash.Pairs))
+	}
+	return hash
 }
