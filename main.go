@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 188, section "Hashing Objects"
+// Continue at page 192, section "Evaluating Hash Literals"
