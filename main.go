@@ -19,4 +19,4 @@ func main() {
 	repl.Start(os.Stdin, os.Stdout)
 }
 
-// Continue at page 195, section "Evaluating Index Expressions With Hashes"
+// Continue at page 198, section "4.6 - The Grand Finale"
